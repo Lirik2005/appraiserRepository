@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/appraisers")
 public class AppraiserController {
 
-    private static final String APPRAISER_TABLE = "appraisers/user :: appraiser_list";
-    private static final String ERROR_ALERT = "templates/fragments/alert :: alert";
+    private static final String APPRAISER_TABLE = "appraisers/appraiserTable :: appraiser_list";
+    private static final String ERROR_ALERT = "fragments/alert :: alert";
     private static final String EDIT_MODAL = "appraisers/modal/editAppraiser";
     private static final String ADD_MODAL = "appraisers/modal/addAppraiser";
 

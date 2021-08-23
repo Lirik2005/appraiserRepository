@@ -1,0 +1,25 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="nav_bar">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #3d80b1;">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" th:with="view=${#httpServletRequest.getServletPath()}">
+                <li class="nav-item">
+                    <a class="nav-link fs-5" th:classappend="${#strings.startsWith(view, '/appraisers')? 'active':''}" aria-current="page" th:href="@{/appraisers}">Оценщики</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5" th:classappend="${#strings.startsWith(view, '/conclusions')? 'active':''}"  aria-current="page" th:href="@{/conclusions}">Заключения</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5" th:classappend="${#strings.startsWith(view, '/myconclusions')? 'active':''}" aria-current="page" th:href="@{/myconclusions}">Мои заключения</a>
+                </li>
+            </ul>
+            <a class="btn btn-outline-light" th:href="@{auth/logout}">Выход</a>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

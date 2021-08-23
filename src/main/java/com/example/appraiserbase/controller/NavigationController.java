@@ -1,6 +1,7 @@
 package com.example.appraiserbase.controller;
 
 import com.example.appraiserbase.model.Appraiser;
+import com.example.appraiserbase.service.appraiser.AppraiserService;
 import com.example.appraiserbase.service.appraiser.AppraiserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,13 +16,17 @@ import java.util.List;
 public class NavigationController {
 
     @Autowired
-    AppraiserServiceImpl appraiserService;
+    AppraiserService appraiserService;
 
-    @RequestMapping(value = "/appraisers", method = RequestMethod.GET)
+    public NavigationController(AppraiserService appraiserService) {
+        this.appraiserService = appraiserService;
+    }
+
+    @RequestMapping(value = {"/", "/appraisers"}, method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ADMIN')")
     public String appraisers(Model model) {
-        final List<Appraiser> allAppraisers = appraiserService.getAllAppraisers();
-        model.addAttribute("appraisers", allAppraisers);
+        final List<Appraiser> appraiserList = appraiserService.getAllAppraisers();
+        model.addAttribute("appraisers", appraiserList);
         return "appraisers/appraiser";
     }
 
