@@ -27,7 +27,7 @@ public class AppraiserController {
     public String addAppraiser(Model model) {
         try {
             model.addAttribute("predefinedRoles", appraiserService.getAllRoles());
-            model.addAttribute("appraiser", new Appraiser());
+            model.addAttribute("appraisers", new Appraiser());
             return ADD_MODAL;
         } catch (Exception e) {
             System.err.println(e.getMessage());

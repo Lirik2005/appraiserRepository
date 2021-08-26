@@ -15,17 +15,17 @@ import java.util.List;
 @Controller
 public class NavigationController {
 
-    @Autowired
-    AppraiserService appraiserService;
+    private final AppraiserServiceImpl appraiserService;
 
-    public NavigationController(AppraiserService appraiserService) {
+    @Autowired
+    public NavigationController(AppraiserServiceImpl appraiserService) {
         this.appraiserService = appraiserService;
     }
 
     @RequestMapping(value = {"/", "/appraisers"}, method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ADMIN')")
     public String appraisers(Model model) {
-        final List<Appraiser> appraiserList = appraiserService.getAllAppraisers();
+        List<Appraiser> appraiserList = appraiserService.getAllAppraisers();
         model.addAttribute("appraisers", appraiserList);
         return "appraisers/appraiser";
     }
