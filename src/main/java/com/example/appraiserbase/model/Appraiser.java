@@ -111,6 +111,7 @@ public class Appraiser {
         return fio;
     }
 
+
     @Override
     public String toString() {
         return lastNameAndInitials();

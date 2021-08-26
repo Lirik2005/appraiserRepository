@@ -7,6 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/appraisers")
@@ -33,6 +36,15 @@ public class AppraiserController {
             System.err.println(e.getMessage());
             return ADD_MODAL;
         }
+    }
+
+    @GetMapping("/checkLogin")
+    public String checkLogin(@RequestParam("login") String login, Model model, HttpServletResponse response) {
+        if (appraiserService.getAppraiserByLogin(login).isPresent()) {
+            model.addAttribute("message", "Пользователь с таким логином уже зарегистрирован");
+            model.addAttribute("alertClass", "alert-danger");
+        }
+        return ERROR_ALERT;
     }
 
     @PostMapping("/saveAppraiser")

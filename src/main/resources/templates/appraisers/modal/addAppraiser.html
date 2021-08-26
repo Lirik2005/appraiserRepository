@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div class="modal-dialog modal-fullscreen" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Создание пользователя</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="custom-alert"></div>
+            <form th:action="@{/appraisers/saveAppraiser}" id="add_appraiser" th:object="${appraisers}" method="post">
+                <div class="row g-3">
+                    <div class="col-4">
+                        <label for="lastName" class="form-label fw-bold">Фамилия</label>
+                        <input class="form-control" id="lastName" type="text" name="lastName" required
+                               placeholder="Фамилия оценщика">
+                    </div>
+                    <div class="col-4">
+                        <label for="firstName" class="form-label fw-bold">Имя</label>
+                        <input class="form-control" id="firstName" type="text" name="firstName" required
+                               placeholder="Имя оценщика">
+                    </div>
+                    <div class="col-4">
+                        <label for="middleName" class="form-label fw-bold">Отчество</label>
+                        <input class="form-control" id="middleName" type="text" name="middleName"
+                               placeholder="Отчество оценщика">
+                    </div>
+                    <div class="col-6">
+                        <label for="placeOfWork" class="form-label fw-bold">Место работы</label>
+                        <input class="form-control" id="placeOfWork" type="text" name="placeOfWork"
+                               placeholder="Место работы оценщика">
+                    </div>
+                    <div class="col-6">
+                        <label for="phoneNumber" class="form-label fw-bold">Контактный телефон</label>
+                        <input class="form-control" id="phoneNumber" type="text" name="phoneNumber" required
+                               placeholder="Контактный телефон оценщика">
+                    </div>
+                    <h4 class="text-center">Информация об имеющихся свидетельствах на оценку</h4>
+                    <div class="col-6">
+                        <label for="businessCertificate" class="form-label fw-bold">Свидетельство на оценку
+                            предприятий</label>
+                        <input class="form-control" id="businessCertificate" type="number" name="businessCertificate">
+                    </div>
+                    <div class="col-6">
+                        <label for="businessCertificateValidity" class="form-label fw-bold">Дата окончания
+                            свидетельства</label>
+                        <input class="form-control" id="businessCertificateValidity" type="date"
+                               name="businessCertificateValidity">
+                    </div>
+                    <div class="col-6">
+                        <label for="landCertificate" class="form-label fw-bold">Свидетельство на оценку земельных
+                            участков</label>
+                        <input class="form-control" id="landCertificate" type="number" name="landCertificate">
+                    </div>
+                    <div class="col-6">
+                        <label for="landCertificateValidity" class="form-label fw-bold">Дата окончания
+                            свидетельства</label>
+                        <input class="form-control" id="landCertificateValidity" type="date"
+                               name="landCertificateValidity">
+                    </div>
+                    <div class="col-6">
+                        <label for="propertyCertificate" class="form-label fw-bold">Свидетельство на оценку объектов
+                            недвижимости</label>
+                        <input class="form-control" id="propertyCertificate" type="number" name="propertyCertificate">
+                    </div>
+                    <div class="col-6">
+                        <label for="propertyCertificateValidity" class="form-label fw-bold">Дата окончания
+                            свидетельства</label>
+                        <input class="form-control" id="propertyCertificateValidity" type="date"
+                               name="propertyCertificateValidity">
+                    </div>
+                    <div class="col-6">
+                        <label for="equipmentCertificate" class="form-label fw-bold">Свидетельство на оценку
+                            оборудования и
+                            транспорта</label>
+                        <input class="form-control" id="equipmentCertificate" type="number" name="equipmentCertificate">
+                    </div>
+                    <div class="col-6">
+                        <label for="equipmentCertificateValidity" class="form-label fw-bold">Дата окончания
+                            свидетельства</label>
+                        <input class="form-control" id="equipmentCertificateValidity" type="date"
+                               name="equipmentCertificateValidity">
+                    </div>
+                    <div class="col-6">
+                        <label for="intellectCertificate" class="form-label fw-bold">Свидетельство на оценку
+                            интеллектуальной
+                            собственности</label>
+                        <input class="form-control" id="intellectCertificate" type="number" name="intellectCertificate">
+                    </div>
+                    <div class="col-6">
+                        <label for="intellectCertificateValidity" class="form-label fw-bold">Дата окончания
+                            свидетельства</label>
+                        <input class="form-control" id="intellectCertificateValidity" type="date"
+                               name="intellectCertificateValidity">
+                    </div>
+                    <h4 class="text-center">Информация для подключения к базе оценщиков</h4>
+                    <div class="col-3">
+                        <label for="login" class="form-label fw-bold">Логин</label>
+                        <input class="form-control" id="login" type="text" name="login" required
+                               placeholder="Логин оценщика">
+                    </div>
+                    <div class="col-3">
+                        <label for="password" class="form-label fw-bold">Пароль</label>
+                        <input class="form-control" id="password" type="text" name="password" required
+                               placeholder="Пароль оценщика">
+                    </div>
+                    <div class="col-3">
+                        <label for="appraiser-roles" class="form-label fw-bold">Роль</label>
+                        <select class="form-select" size="3" id="appraiser-roles" name="appraiser-roles"
+                                th:field="*{roles}"
+                                multiple="multiple" required>
+                            <option th:each="role : ${predefinedRoles}"
+                                    th:value="${{role}}"
+                                    th:text="${role.pid}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label class="col-form-label fw-bold">Статус</label>
+                        <div class="form-check"
+                             th:each="status : ${T(com.example.appraiserbase.model.Status).values()}">
+                            <input name="status" class="form-check-input" type="radio" required
+                                   th:value="${status}"
+                                   th:text="${status}"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</html>
+
+
+
+
+
+

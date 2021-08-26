@@ -8,13 +8,11 @@
         <tr>
             <th scope="col">ФИО</th>
             <th scope="col">Место работы</th>
-            <th scope="col">Контактный телефон</th>
             <th scope="col">Оценка бизнеса</th>
             <th scope="col">Оценка земельных участков</th>
             <th scope="col">Оценка недвижимости</th>
             <th scope="col">Оценка оборудования и транспорта</th>
             <th scope="col">Оценка интеллектуальной собственности</th>
-            <th scope="col">Роль</th>
             <th scope="col">Просмотр</th>
             <th scope="col">Редактирование</th>
             <th scope="col">Удаление</th>
@@ -28,13 +26,11 @@
             </td>
             <td th:text="*{lastNameAndInitials}"></td>
             <td th:text="*{placeOfWork}"></td>
-            <td th:text="*{phoneNumber}"></td>
             <td th:text="*{businessCertificate}"></td>
             <td th:text="*{landCertificate}"></td>
             <td th:text="*{propertyCertificate}"></td>
             <td th:text="*{equipmentCertificate}"></td>
             <td th:text="*{intellectCertificate}"></td>
-            <td th:text="*{getRolesStr}"></td>
             <td>
                 <a th:href="@{appraisers/edit/(pid=*{pid})}" class="btn btn-success showBtn">
                     Просмотр
@@ -56,6 +52,5 @@
          aria-hidden="true"></div>
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
          aria-hidden="true"></div>
-    <!-- <div th:replace="appraisers/modal/deleteAppraiser"></div>-->
 </div>
 </html>

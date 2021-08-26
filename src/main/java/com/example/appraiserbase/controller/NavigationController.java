@@ -15,10 +15,10 @@ import java.util.List;
 @Controller
 public class NavigationController {
 
-    private final AppraiserServiceImpl appraiserService;
+    private final AppraiserService appraiserService;
 
     @Autowired
-    public NavigationController(AppraiserServiceImpl appraiserService) {
+    public NavigationController(AppraiserService appraiserService) {
         this.appraiserService = appraiserService;
     }
 
