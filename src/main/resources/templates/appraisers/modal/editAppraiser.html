@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div class="modal-dialog modal-fullscreen" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Редактирование пользователя</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="custom-alert"></div>
+            <form th:action="@{/appraisers/updateAppraiser}" id="edit_appraiser" th:object="${appraisers}" method="post">
+                <input type="hidden" th:field="*{pid}" name="pid" id="edit_appraiser_id">
+                <div class="row g-3">
+                    <div class="col-4">
+                        <label for="lastName" class="form-label fw-bold">Фамилия</label>
+                        <input class="form-control" th:field="*{lastName}" id="lastName" type="text" name="lastName"
+                               required>
+                    </div>
+                    <div class="col-4">
+                        <label for="firstName" class="form-label fw-bold">Имя</label>
+                        <input class="form-control" th:field="*{firstName}" id="firstName" type="text" name="firstName"
+                               required>
+                    </div>
+                    <div class="col-4">
+                        <label for="middleName" class="form-label fw-bold">Отчество</label>
+                        <input class="form-control" th:field="*{middleName}" id="middleName" type="text"
+                               name="middleName">
+                    </div>
+                    <div class="col-6">
+                        <label for="placeOfWork" class="form-label fw-bold">Место работы</label>
+                        <input class="form-control" th:field="*{placeOfWork}" id="placeOfWork" type="text"
+                               name="placeOfWork">
+                    </div>
+                    <div class="col-6">
+                        <label for="phoneNumber" class="form-label fw-bold">Контактный телефон</label>
+                        <input class="form-control" th:field="*{phoneNumber}" id="phoneNumber" type="text"
+                               name="phoneNumber" required>
+                    </div>
+                    <h4 class="text-center">Информация об имеющихся свидетельствах на оценку</h4>
+                    <div class="col-6">
+                        <label for="businessCertificate" class="form-label fw-bold">Свидетельство на оценку
+                            предприятий</label>
+                        <input class="form-control" th:field="*{businessCertificate}" id="businessCertificate"
+                               type="number" name="businessCertificate">
+                    </div>
+                    <div class="col-6">
+                        <label for="businessCertificateValidity" class="form-label fw-bold">Дата окончания
+                            свидетельства</label>
+                        <input class="form-control" th:field="*{businessCertificateValidity}"
+                               id="businessCertificateValidity" type="date"
+                               name="businessCertificateValidity">
+                    </div>
+                    <div class="col-6">
+                        <label for="landCertificate" class="form-label fw-bold">Свидетельство на оценку земельных
+                            участков</label>
+                        <input class="form-control" th:field="*{landCertificate}" id="landCertificate" type="number"
+                               name="landCertificate">
+                    </div>
+                    <div class="col-6">
+                        <label for="landCertificateValidity" class="form-label fw-bold">Дата окончания
+                            свидетельства</label>
+                        <input class="form-control" th:field="*{landCertificateValidity}" id="landCertificateValidity"
+                               type="date"
+                               name="landCertificateValidity">
+                    </div>
+                    <div class="col-6">
+                        <label for="propertyCertificate" class="form-label fw-bold">Свидетельство на оценку объектов
+                            недвижимости</label>
+                        <input class="form-control" th:field="*{propertyCertificate}" id="propertyCertificate"
+                               type="number" name="propertyCertificate">
+                    </div>
+                    <div class="col-6">
+                        <label for="propertyCertificateValidity" class="form-label fw-bold">Дата окончания
+                            свидетельства</label>
+                        <input class="form-control" th:field="*{propertyCertificateValidity}"
+                               id="propertyCertificateValidity" type="date"
+                               name="propertyCertificateValidity">
+                    </div>
+                    <div class="col-6">
+                        <label for="equipmentCertificate" class="form-label fw-bold">Свидетельство на оценку
+                            оборудования и
+                            транспорта</label>
+                        <input class="form-control" th:field="*{equipmentCertificate}" id="equipmentCertificate"
+                               type="number" name="equipmentCertificate">
+                    </div>
+                    <div class="col-6">
+                        <label for="equipmentCertificateValidity" class="form-label fw-bold">Дата окончания
+                            свидетельства</label>
+                        <input class="form-control" th:field="*{equipmentCertificateValidity}"
+                               id="equipmentCertificateValidity" type="date"
+                               name="equipmentCertificateValidity">
+                    </div>
+                    <div class="col-6">
+                        <label for="intellectCertificate" class="form-label fw-bold">Свидетельство на оценку
+                            интеллектуальной
+                            собственности</label>
+                        <input class="form-control" th:field="*{intellectCertificate}" id="intellectCertificate"
+                               type="number" name="intellectCertificate">
+                    </div>
+                    <div class="col-6">
+                        <label for="intellectCertificateValidity" class="form-label fw-bold">Дата окончания
+                            свидетельства</label>
+                        <input class="form-control" th:field="*{intellectCertificateValidity}"
+                               id="intellectCertificateValidity" type="date"
+                               name="intellectCertificateValidity">
+                    </div>
+                    <h4 class="text-center">Информация для подключения к базе оценщиков</h4>
+                    <div class="col-3">
+                        <label for="login" class="form-label fw-bold">Логин</label>
+                        <input class="form-control" th:field="*{login}" id="login" type="text" name="login" required>
+                    </div>
+                    <div class="col-3">
+                        <label for="password" class="form-label fw-bold">Пароль</label>
+                        <input class="form-control" th:field="*{password}" id="password" type="text" name="password"
+                               required>
+                    </div>
+                    <div class="col-3">
+                        <label for="appraiser-roles" class="form-label fw-bold">Роль</label>
+                        <select class="form-select" size="3" id="appraiser-roles" name="appraiser-roles"
+                                th:field="*{roles}"
+                                multiple="multiple" required>
+                            <option th:each="role : ${predefinedRoles}"
+                                    th:value="${{role}}"
+                                    th:text="${role.pid}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label class="col-form-label fw-bold">Статус</label>
+                        <div class="form-check"
+                             th:each="status : ${T(com.example.appraiserbase.model.Status).values()}">
+                            <input name="status" th:field="*{status}" class="form-check-input" type="radio" required
+                                   th:value="${status}"
+                                   th:text="${status}"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</html>

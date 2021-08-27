@@ -51,20 +51,69 @@ async function saveAppraiser(request) {
     eventForAppraiserPage();
 }
 
+function editAppraiser(href) {
+    fetch(href)
+        .then(response => response.text()).then(fragment => {
+        document.querySelector('#editModal').innerHTML = fragment
+    })
+        .then(() => {
+            let modal = new bootstrap.Modal(document.querySelector("#editModal"), {});
+            modal.show();
+            document.getElementById("edit_appraiser").addEventListener('submit', event => submitEditUserForm(event))
+        });
+}
+
+function eventForAppraiserPage() {
+    document.querySelectorAll('.table .editBtn').forEach(editBtn => editBtn.addEventListener('click', function (event) {
+        event.preventDefault()
+        let href = this.getAttribute('href');
+        editAppraiser(href)
+    }));
+
+    /*document.querySelectorAll('.table .deleteBtn').forEach(deleteBtn => deleteBtn.addEventListener('click', function (event) {
+        event.preventDefault()
+        let href = this.getAttribute('href');
+        document.querySelector('#deleteModal .modal-footer a').setAttribute('href', href)
+        let modal = new bootstrap.Modal(document.querySelector("#deleteModal"), {});
+        modal.show();
+        document.getElementById('delUser').addEventListener('click', function (event) {
+            event.preventDefault();
+            fetch(href).then(response => response.text()).then(fragment => {
+                document.querySelector(".user_list").innerHTML = fragment;
+                modal.hide();
+                eventForUserPage();
+            })
+        })
+    }));*/
+}
 
 
 
 
 
 
-function editUser(href) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*function editUser(href) {
     fetch(href)
         .then(response => response.text()).then(fragment => {
         document.querySelector('#editModal').innerHTML = fragment
 
     })
         .then(() => {
-            let modal = new bootstrap.Modal(document.querySelector("#edi"), {});
+            let modal = new bootstrap.Modal(document.querySelector("#edit"), {});
             modal.show();
             document.getElementById("edit_user").addEventListener('submit', event => submitEditUserForm(event))
         });
@@ -133,4 +182,4 @@ async function filterUser() {
     })
 
 
-}
+}*/

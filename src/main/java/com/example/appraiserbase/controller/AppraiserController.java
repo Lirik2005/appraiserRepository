@@ -41,6 +41,7 @@ public class AppraiserController {
     @GetMapping("/checkLogin")
     public String checkLogin(@RequestParam("login") String login, Model model, HttpServletResponse response) {
         if (appraiserService.getAppraiserByLogin(login).isPresent()) {
+            response.setStatus((HttpServletResponse.SC_CONFLICT));
             model.addAttribute("message", "Пользователь с таким логином уже зарегистрирован");
             model.addAttribute("alertClass", "alert-danger");
         }
@@ -62,4 +63,22 @@ public class AppraiserController {
             return APPRAISER_TABLE;
         }
     }
+
+    @GetMapping("/editAppraiser")
+    public String editAppraiser(Long pid, Model model) {
+        try {
+            Appraiser appraiser = appraiserService.getAppraiserById(pid);
+            model.addAttribute("predefinedRoles", appraiserService.getAllRoles());
+            model.addAttribute("appraisers", appraiser);
+            return EDIT_MODAL;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return EDIT_MODAL;
+        }
+    }
+
+
+
+
+
 }
