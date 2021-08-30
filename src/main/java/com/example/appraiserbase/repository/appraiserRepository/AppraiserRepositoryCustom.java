@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface AppraiserRepositoryCustom {
 
-    List <Appraiser> filterAppraiser(String s);
+    List <Appraiser> filterAppraiser(String searchWord);
 
 }

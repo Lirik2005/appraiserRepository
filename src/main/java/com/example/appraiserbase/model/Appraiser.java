@@ -103,14 +103,13 @@ public class Appraiser {
     @Transient
     public String lastNameAndInitials() {
         String fio = null;
-        if (getMiddleName() != null) {
-            fio = String.format("%s %s. %s.", getLastName(), getFirstName().charAt(0), getMiddleName().charAt(0));
+        if ((middleName != null) && (!middleName.isEmpty())) {
+            fio = String.format("%s %s. %s.", lastName, firstName.charAt(0), middleName.charAt(0));
         } else {
-            fio = String.format("%s %s.", getLastName(), getFirstName().charAt(0));
+            fio = String.format("%s %s.", lastName, firstName.charAt(0));
         }
         return fio;
     }
-
 
     @Override
     public String toString() {
@@ -342,6 +341,7 @@ public class Appraiser {
     public int hashCode() {
         return Objects.hash(pid, login);
     }
+
 
 
 }

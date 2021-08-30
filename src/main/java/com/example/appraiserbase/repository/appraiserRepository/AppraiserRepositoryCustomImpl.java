@@ -9,7 +9,8 @@ import java.util.List;
 public class AppraiserRepositoryCustomImpl implements AppraiserRepositoryCustom{
     
     @Override
-    public List<Appraiser> filterAppraiser(String s) {
+    public List<Appraiser> filterAppraiser(String searchWord) {
+
         return null;
     }
 }

@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     addAppraiserBtnEvent();
     eventForAppraiserPage();
 });
+const path = "http://localhost:8080/appraisers"
 
 function addAppraiserBtnEvent() {
     document.getElementById("addBtn").addEventListener('click', function (event) {
@@ -59,7 +60,7 @@ function editAppraiser(href) {
         .then(() => {
             let modal = new bootstrap.Modal(document.querySelector("#editModal"), {});
             modal.show();
-            document.getElementById("edit_appraiser").addEventListener('submit', event => submitEditUserForm(event))
+            document.getElementById("edit_appraiser").addEventListener('submit', event => submitEditAppraiserForm(event))
         });
 }
 
@@ -70,90 +71,25 @@ function eventForAppraiserPage() {
         editAppraiser(href)
     }));
 
-    /*document.querySelectorAll('.table .deleteBtn').forEach(deleteBtn => deleteBtn.addEventListener('click', function (event) {
-        event.preventDefault()
-        let href = this.getAttribute('href');
-        document.querySelector('#deleteModal .modal-footer a').setAttribute('href', href)
-        let modal = new bootstrap.Modal(document.querySelector("#deleteModal"), {});
-        modal.show();
-        document.getElementById('delUser').addEventListener('click', function (event) {
-            event.preventDefault();
-            fetch(href).then(response => response.text()).then(fragment => {
-                document.querySelector(".user_list").innerHTML = fragment;
-                modal.hide();
-                eventForUserPage();
-            })
-        })
-    }));*/
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*function editUser(href) {
-    fetch(href)
-        .then(response => response.text()).then(fragment => {
-        document.querySelector('#editModal').innerHTML = fragment
-
-    })
-        .then(() => {
-            let modal = new bootstrap.Modal(document.querySelector("#edit"), {});
-            modal.show();
-            document.getElementById("edit_user").addEventListener('submit', event => submitEditUserForm(event))
-        });
-}
-
-function eventForAppraiserPage() {
-    document.querySelectorAll('.table tbody tr').forEach(trClick => trClick.addEventListener('dblclick', function (event) {
-        event.preventDefault()
-        let href = trClick.querySelector('a').getAttribute('href')
-        editUser(href)
-    }));
-
-    document.querySelectorAll('.table .editBtn').forEach(editBtn => editBtn.addEventListener('click', function (event) {
-        event.preventDefault()
-        let href = this.getAttribute('href');
-        editUser(href)
-    }));
-
     document.querySelectorAll('.table .deleteBtn').forEach(deleteBtn => deleteBtn.addEventListener('click', function (event) {
         event.preventDefault()
         let href = this.getAttribute('href');
         document.querySelector('#deleteModal .modal-footer a').setAttribute('href', href)
         let modal = new bootstrap.Modal(document.querySelector("#deleteModal"), {});
         modal.show();
-        document.getElementById('delUser').addEventListener('click', function (event) {
+        document.getElementById('deleteAppraiser').addEventListener('click', function (event) {
             event.preventDefault();
             fetch(href).then(response => response.text()).then(fragment => {
-                document.querySelector(".user_list").innerHTML = fragment;
+                document.querySelector(".appraiser_list").innerHTML = fragment;
                 modal.hide();
                 eventForAppraiserPage();
             })
         })
-
     }));
+
 }
 
-
-
-
-async function submitEditUserForm(event) {
+async function submitEditAppraiserForm(event) {
     event.preventDefault();
     let formData = new FormData(event.target),
         request = new Request(event.target.action, {
@@ -161,25 +97,22 @@ async function submitEditUserForm(event) {
             body: formData
         });
     let response = await fetch(request);
-    let userTable = await response.text();
+    let appraiserTable = await response.text();
     let modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
     modal.hide();
-    document.querySelector(".user_list").innerHTML = userTable;
-
+    document.querySelector(".appraiser_list").innerHTML = appraiserTable;
     eventForAppraiserPage();
 }
 
-const path = "http://localhost:8080/users"
-
-async function filterUser() {
-    let searchWord = document.getElementById('searchWord').value
+async function searchAppraiser() {
+    let searchWord = document.getElementById('searchText').value
     const param = new URLSearchParams({
-        "s": searchWord
+        "filter": searchWord
     })
     fetch(path + "/filter?" + param).then(response => response.text()).then(fragment => {
-        document.querySelector(".user_list").innerHTML = fragment
+        document.querySelector(".appraiser_list").innerHTML = fragment
         eventForAppraiserPage();
     })
 
 
-}*/
+}

@@ -4,12 +4,10 @@ import com.example.appraiserbase.model.Appraiser;
 import com.example.appraiserbase.service.appraiser.AppraiserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 @RequestMapping("/appraisers")
@@ -77,8 +75,57 @@ public class AppraiserController {
         }
     }
 
+    @PostMapping("/updateAppraiser")
+    public String updateAppraiser(Appraiser appraiser, Model model) {
+        try {
+            appraiserService.updateAppraiser(appraiser);
+            model.addAttribute("appraisers", appraiserService.getAllAppraisers());
+            model.addAttribute("message", "Оценщик успешно обновлен");
+            model.addAttribute("alertClass", "alert-success");
+            return APPRAISER_TABLE;
+        } catch (Exception e) {
+            model.addAttribute("message", "При редактировании оценщика возникла ошибка");
+            model.addAttribute("alertClass", "alert-danger");
+            return APPRAISER_TABLE;
+        }
+    }
 
+    @RequestMapping(value = "/deleteAppraiser", method = {RequestMethod.DELETE, RequestMethod.GET})
+    public String deleteAppraiser(Long pid, Model model) {
+        try {
+            appraiserService.deleteAppraiserById(pid);
+            model.addAttribute("appraisers", appraiserService.getAllAppraisers());
+            model.addAttribute("message", "Оценщик успешно удален из базы");
+            model.addAttribute("alertClass", "alert-success");
+            return APPRAISER_TABLE;
+        } catch (Exception e) {
+            model.addAttribute("appraisers", appraiserService.getAllAppraisers());
+            model.addAttribute("message", "Возникла ошибка при удалении из базы");
+            model.addAttribute("alertClass", "alert-danger");
+            return APPRAISER_TABLE;
+        }
+    }
 
+    @GetMapping("/filter")
+    public String filterAppraiser(String searchText, Model model) {
+        List<Appraiser> appraiserList;
+        try {
+            if (searchText != null && !searchText.isEmpty()) {
+                appraiserList = appraiserService.filterAppraiser(searchText);
+            } else {
+                appraiserList = appraiserService.getAllAppraisers();
+            }
+            model.addAttribute("appraisers", appraiserList);
+            return APPRAISER_TABLE;
+        } catch (Exception e) {
+            model.addAttribute("appraisers", appraiserService.getAllAppraisers());
+        model.addAttribute("message", "В результате поиска произошла ошибка");
+        model.addAttribute("alertClass", "alert-danger");
+        return APPRAISER_TABLE;
+
+        }
+
+    }
 
 
 }

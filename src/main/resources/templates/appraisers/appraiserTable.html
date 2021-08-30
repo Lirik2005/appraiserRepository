@@ -24,7 +24,7 @@
             <td style="display: none">
                 <div class="pid" th:text="*{pid}"></div>
             </td>
-            <td th:text="*{lastNameAndInitials}"></td>
+            <td th:text="*{lastNameAndInitials()}"></td>
             <td th:text="*{placeOfWork}"></td>
             <td th:text="*{businessCertificate}"></td>
             <td th:text="*{landCertificate}"></td>
@@ -32,16 +32,16 @@
             <td th:text="*{equipmentCertificate}"></td>
             <td th:text="*{intellectCertificate}"></td>
             <td>
-                <a th:href="@{appraisers/edit/(pid=*{pid})}" class="btn btn-success showBtn">
+                <a th:href="@{appraisers/showAppraiser/(pid=*{pid})}" class="btn btn-success showBtn">
                     Просмотр
                 </a>
             </td>
             <td>
-                <a th:href="@{appraisers/edit/(pid=*{pid})}" class="btn btn-warning editBtn">
+                <a th:href="@{appraisers/editAppraiser/(pid=*{pid})}" class="btn btn-warning editBtn">
                     Редактирование
                 </a>
             <td>
-                <a th:href="@{appraisers/delete/(pid=*{pid})}" class="btn btn-danger deleteBtn">
+                <a th:href="@{appraisers/deleteAppraiser/(pid=*{pid})}" class="btn btn-danger deleteBtn">
                     Удаление
                 </a>
             </td>
@@ -52,5 +52,7 @@
          aria-hidden="true"></div>
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
          aria-hidden="true"></div>
+    <div th:replace="appraisers/modal/deleteAppraiser">
+    </div>
 </div>
 </html>
