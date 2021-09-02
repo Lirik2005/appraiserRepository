@@ -107,12 +107,11 @@ async function submitEditAppraiserForm(event) {
 async function searchAppraiser() {
     let searchWord = document.getElementById('searchText').value
     const param = new URLSearchParams({
-        "filter": searchWord
-    })
+        "search": searchWord
+    });
     fetch(path + "/filter?" + param).then(response => response.text()).then(fragment => {
         document.querySelector(".appraiser_list").innerHTML = fragment
         eventForAppraiserPage();
     })
-
 
 }

@@ -2,6 +2,7 @@ package com.example.appraiserbase.controller;
 
 import com.example.appraiserbase.model.Appraiser;
 import com.example.appraiserbase.service.appraiser.AppraiserService;
+import org.apache.tomcat.util.codec.binary.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -110,12 +111,14 @@ public class AppraiserController {
     public String filterAppraiser(String searchText, Model model) {
         List<Appraiser> appraiserList;
         try {
-            if (searchText != null && !searchText.isEmpty()) {
+            appraiserList = appraiserService.filterAppraiser(searchText);
+            model.addAttribute("appraisers", appraiserList);
+          /*  if (searchText != null && !searchText.isEmpty()) {
                 appraiserList = appraiserService.filterAppraiser(searchText);
             } else {
                 appraiserList = appraiserService.getAllAppraisers();
             }
-            model.addAttribute("appraisers", appraiserList);
+            model.addAttribute("appraisers", appraiserList);*/
             return APPRAISER_TABLE;
         } catch (Exception e) {
             model.addAttribute("appraisers", appraiserService.getAllAppraisers());
