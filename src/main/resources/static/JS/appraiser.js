@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     addAppraiserBtnEvent();
     eventForAppraiserPage();
 });
-const path = "http://localhost:8080/appraisers"
+
 
 function addAppraiserBtnEvent() {
     document.getElementById("addBtn").addEventListener('click', function (event) {
@@ -104,10 +104,12 @@ async function submitEditAppraiserForm(event) {
     eventForAppraiserPage();
 }
 
+const path = "http://localhost:8080/appraisers"
+
 async function searchAppraiser() {
     let searchWord = document.getElementById('searchText').value
     const param = new URLSearchParams({
-        "search": searchWord
+        "searchText": searchWord
     });
     fetch(path + "/filter?" + param).then(response => response.text()).then(fragment => {
         document.querySelector(".appraiser_list").innerHTML = fragment

@@ -111,14 +111,12 @@ public class AppraiserController {
     public String filterAppraiser(String searchText, Model model) {
         List<Appraiser> appraiserList;
         try {
-            appraiserList = appraiserService.filterAppraiser(searchText);
-            model.addAttribute("appraisers", appraiserList);
-          /*  if (searchText != null && !searchText.isEmpty()) {
+           if (searchText != null && !searchText.isEmpty()) {
                 appraiserList = appraiserService.filterAppraiser(searchText);
             } else {
                 appraiserList = appraiserService.getAllAppraisers();
             }
-            model.addAttribute("appraisers", appraiserList);*/
+            model.addAttribute("appraisers", appraiserList);
             return APPRAISER_TABLE;
         } catch (Exception e) {
             model.addAttribute("appraisers", appraiserService.getAllAppraisers());

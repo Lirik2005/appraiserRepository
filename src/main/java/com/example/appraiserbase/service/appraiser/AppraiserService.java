@@ -22,5 +22,5 @@ public interface AppraiserService {
 
     void deleteAppraiserById(Long pid);
 
-    List<Appraiser> filterAppraiser(String filterText);
+    List<Appraiser> filterAppraiser(String searchText);
 }

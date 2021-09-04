@@ -69,7 +69,7 @@ public class AppraiserServiceImpl implements AppraiserService {
     }
 
     @Override
-    public List<Appraiser> filterAppraiser(String filterText) {
-        return appraiserRepository.filterAppraiser(filterText);
+    public List<Appraiser> filterAppraiser(String searchText) {
+        return appraiserRepository.filterAppraiser(searchText);
     }
 }
