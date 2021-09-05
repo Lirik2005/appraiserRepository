@@ -14,9 +14,9 @@ import java.util.Optional;
 @Service
 public class AppraiserServiceImpl implements AppraiserService {
 
-    private AppraiserRepository appraiserRepository;
+    private final AppraiserRepository appraiserRepository;
 
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public AppraiserServiceImpl(AppraiserRepository appraiserRepository, PasswordEncoder passwordEncoder) {

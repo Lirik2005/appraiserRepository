@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: head(~{::script}, ~{})">
+    <script type="text/javascript" th:src="@{js/allconclusions.js}"></script>
+</div>
+
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 mt-5 mb-5">
+            <div th:replace="conclusions/businessConclusions/actionBar"></div>
+            <div th:replace="conclusions/businessConclusions/businessConclusionTable :: businessConclusion_list"></div>
+        </div>
+    </div>
+</main>
+<footer th:include="fragments/footer :: footer"></footer>
+</html>

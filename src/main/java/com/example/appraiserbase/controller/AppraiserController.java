@@ -3,6 +3,7 @@ package com.example.appraiserbase.controller;
 import com.example.appraiserbase.model.Appraiser;
 import com.example.appraiserbase.service.appraiser.AppraiserService;
 import org.apache.tomcat.util.codec.binary.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +20,9 @@ public class AppraiserController {
     private static final String EDIT_MODAL = "appraisers/modal/editAppraiser";
     private static final String ADD_MODAL = "appraisers/modal/addAppraiser";
 
-    AppraiserService appraiserService;
+   private final AppraiserService appraiserService;
 
+   @Autowired
     public AppraiserController(AppraiserService appraiserService) {
         this.appraiserService = appraiserService;
     }

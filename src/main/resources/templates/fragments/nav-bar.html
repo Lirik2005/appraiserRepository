@@ -14,7 +14,7 @@
                     <a class="nav-link fs-5" th:classappend="${#strings.startsWith(view, '/conclusions')? 'active':''}"  aria-current="page" th:href="@{/conclusions}">Заключения</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-5" th:classappend="${#strings.startsWith(view, '/myconclusions')? 'active':''}" aria-current="page" th:href="@{/myconclusions}">Мои заключения</a>
+                    <a class="nav-link fs-5" th:classappend="${#strings.startsWith(view, '/myConclusions')? 'active':''}" aria-current="page" th:href="@{/myConclusions}">Мои заключения</a>
                 </li>
             </ul>
             <a class="btn btn-outline-light" th:href="@{auth/logout}">Выход</a>

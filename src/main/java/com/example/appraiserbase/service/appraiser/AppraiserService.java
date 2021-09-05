@@ -2,10 +2,12 @@ package com.example.appraiserbase.service.appraiser;
 
 import com.example.appraiserbase.model.Appraiser;
 import com.example.appraiserbase.model.Role;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public interface AppraiserService {
 
     List<Appraiser> getAllAppraisers();

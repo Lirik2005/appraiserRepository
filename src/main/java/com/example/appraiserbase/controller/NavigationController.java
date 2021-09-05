@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,6 +29,12 @@ public class NavigationController {
         List<Appraiser> appraiserList = appraiserService.getAllAppraisers();
         model.addAttribute("appraisers", appraiserList);
         return "appraisers/appraiser";
+    }
+
+    @GetMapping("/conclusions")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER', 'PREMIUM')")
+    public String conclusions () {
+        return "conclusions/conclusions";
     }
 
 

@@ -116,6 +116,7 @@ public class Appraiser {
         return lastNameAndInitials();
     }
 
+
     @Transient
     public String getRolesStr() {
         return roles.stream().map(Role::getName).collect(Collectors.joining(","));
