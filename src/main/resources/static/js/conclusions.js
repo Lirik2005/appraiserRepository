@@ -48,8 +48,8 @@ function deleteActive() {
 }
 
 function clickOnFirstTab() {
-    const authorTab = document.querySelector('#businessConclusions-tab');
-    eventFire(authorTab, 'click');
+    const businessConclusionsTab = document.querySelector('#businessConclusions-tab');
+    eventFire(businessConclusionsTab, 'click');
 }
 
 function eventFire(el, etype) {

@@ -50,6 +50,15 @@
                                id="businessCertificateValidity" type="date"
                                name="businessCertificateValidity">
                     </div>-->
+                    <div class="col-12">
+                        <label class="col-form-label fw-bold">Предмет оценки</label>
+                        <select name="appraiser" class="form-select">
+                            <option th:each="appraiser : ${appraisers}"
+                                    th:value="${appraiser.pid}"
+                                    th:text="${appraiser.lastNameAndInitials()}">
+                            </option>
+                        </select>
+                    </div>
 
                     <div class="col-6">
                         <label for="conclusionNumber" class="form-label fw-bold">Номер заключения</label>

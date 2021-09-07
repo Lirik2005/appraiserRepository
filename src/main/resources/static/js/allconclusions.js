@@ -1,9 +1,9 @@
 addConclusionBtnEvent();
-eventForAppraiserPage();
+//eventForAppraiserPage();
 
 
 function addConclusionBtnEvent() {
-    document.getElementById("addBtn").addEventListener('click', function (event) {
+    document.getElementById("addConclusionBtn").addEventListener('click', function (event) {
         event.preventDefault();
         let href = this.getAttribute('href');
         fetch(href)
