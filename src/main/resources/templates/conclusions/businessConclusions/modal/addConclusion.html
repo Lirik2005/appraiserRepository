@@ -52,12 +52,9 @@
                     </div>-->
                     <div class="col-12">
                         <label class="col-form-label fw-bold">Предмет оценки</label>
-                        <select name="appraiser" class="form-select">
-                            <option th:each="appraiser : ${appraisers}"
-                                    th:value="${appraiser.pid}"
-                                    th:text="${appraiser.lastNameAndInitials()}">
-                            </option>
-                        </select>
+                        <input th:name ="apr" th:text="apr">
+
+                        </input>
                     </div>
 
                     <div class="col-6">
