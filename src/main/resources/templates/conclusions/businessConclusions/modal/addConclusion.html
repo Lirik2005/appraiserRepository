@@ -13,48 +13,15 @@
             <form th:action="@{/conclusions/businessConclusions/saveConclusion}" id="add_conclusion"
                   th:object="${businessConclusions}" method="post">
                 <div class="row g-3">
-                 <!--   <div class="col-4">
-                        <label for="lastName" class="form-label fw-bold">Фамилия</label>
-                        <input class="form-control" th:field="*{appraiser.getLastName()}" id="lastName" type="text"
-                               name="lastName"
-                               required>
-                    </div>
-                    <div class="col-4">
-                        <label for="firstName" class="form-label fw-bold">Имя</label>
-                        <input class="form-control" th:field="*{appraiser.getFirstName()}" id="firstName" type="text"
-                               name="firstName"
-                               required>
-                    </div>
-                    <div class="col-4">
-                        <label for="middleName" class="form-label fw-bold">Отчество</label>
-                        <input class="form-control" th:field="*{appraiser.getMiddleName()}" id="middleName" type="text"
-                               name="middleName">
-                    </div>
-                    <div class="col-12">
-                        <label for="placeOfWork" class="form-label fw-bold">Исполнитель оценки</label>
-                        <input class="form-control" th:field="*{appraiser.getPlaceOfWork()}" id="placeOfWork"
-                               type="text"
-                               name="placeOfWork">
-                    </div>
-                    <div class="col-6">
-                        <label for="businessCertificate" class="form-label fw-bold">Свидетельство на оценку
-                            предприятий</label>
-                        <input class="form-control" th:field="*{appraiser.getBusinessCertificate()}"
-                               id="businessCertificate" type="number"
-                               name="businessCertificate">
-                    </div>
-                    <div class="col-6">
-                        <label for="businessCertificateValidity" class="form-label fw-bold">Дата окончания
-                            свидетельства</label>
-                        <input class="form-control" th:field="*{appraiser.getBusinessCertificateValidity()}"
-                               id="businessCertificateValidity" type="date"
-                               name="businessCertificateValidity">
-                    </div>-->
+
                     <div class="col-12">
                         <label class="col-form-label fw-bold">Предмет оценки</label>
-                        <input th:name ="apr" th:text="apr">
-
-                        </input>
+                        <select name="appraiser" class="form-select">
+                            <option th:each="appraiser : ${appraisers}"
+                                    th:value="${appraiser.pid}"
+                                    th:text="${appraiser.lastNameAndInitials()}">
+                            </option>
+                        </select>
                     </div>
 
                     <div class="col-6">
