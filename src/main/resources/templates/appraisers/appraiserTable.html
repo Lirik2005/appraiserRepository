@@ -14,8 +14,8 @@
             <th scope="col">Оценка оборудования и транспорта</th>
             <th scope="col">Оценка интеллектуальной собственности</th>
             <th scope="col">Просмотр</th>
-            <th scope="col">Редактирование</th>
-            <th scope="col">Удаление</th>
+            <th scope="col" sec:authorize="hasAuthority('ADMIN')">Редактирование</th>
+            <th scope="col" sec:authorize="hasAuthority('ADMIN')">Удаление</th>
         </tr>
         </thead>
 
@@ -37,11 +37,13 @@
                 </a>
             </td>
             <td>
-                <a th:href="@{appraisers/editAppraiser/(pid=*{pid})}" class="btn btn-warning editBtn">
+                <a th:href="@{appraisers/editAppraiser/(pid=*{pid})}" class="btn btn-warning editBtn"
+                   sec:authorize="hasAuthority('ADMIN')">
                     Редактирование
                 </a>
             <td>
-                <a th:href="@{appraisers/deleteAppraiser/(pid=*{pid})}" class="btn btn-danger deleteBtn">
+                <a th:href="@{appraisers/deleteAppraiser/(pid=*{pid})}" class="btn btn-danger deleteBtn"
+                   sec:authorize="hasAuthority('ADMIN')">
                     Удаление
                 </a>
             </td>

@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <div class="btn-toolbar justify-content-between" role="toolbar">
     <div class="btn-group mb-3 mt-3" role="group">
-        <a th:href="@{appraisers/addAppraiser}" class="btn btn-success" id="addBtn">
+        <a th:href="@{appraisers/addAppraiser}" class="btn btn-success" id="addBtn" sec:authorize="hasAuthority('ADMIN')">
             Добавить оценщика
         </a>
     </div>

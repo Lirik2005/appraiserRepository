@@ -27,7 +27,7 @@
             <td th:text="*{conclusionNumber}"></td>
             <td th:text="*{dateOfIssue}"></td>
             <td th:text="*{subjectOfAssessment}"></td>
-            <td th:text="*{typeOfValue}"></td>
+            <td th:text="*{typeOfValue.getTypeOfValue()}"></td>
             <td th:text="*{evaluationResult}"></td>
             <td>
                 <a th:href="@{conclusions/businessConclusions/showConcliusion/(pid=*{pid})}" class="btn btn-success showBtn">

@@ -14,14 +14,17 @@
                   th:object="${businessConclusions}" method="post">
                 <div class="row g-3">
 
-                    <div class="col-12">
-                        <label class="col-form-label fw-bold">Предмет оценки</label>
-                        <select name="appraiser" class="form-select">
-                            <option th:each="appraiser : ${appraisers}"
-                                    th:value="${appraiser.pid}"
-                                    th:text="${appraiser.lastNameAndInitials()}">
-                            </option>
-                        </select>
+                    <div class="col-6">
+                        <label for="appraiser" class="form-label fw-bold">Оценщик</label>
+                        <input class="form-control" id="appraiser" type="text"
+                                th:value="${appraisers.lastNameAndInitials()}"
+                               readonly required>
+                        <input class="appraiser" th:value="${{appraisers}}" name="appraiser" style="display: none">
+                    </div>
+                    <div class="col-6">
+                        <label for="businessCertificate" class="form-label fw-bold">Номер свидетельства</label>
+                        <input class="form-control" id="businessCertificate" type="text" name="businessCertificate"
+                               th:value="${appraisers.getBusinessCertificate()}" readonly required>
                     </div>
 
                     <div class="col-6">

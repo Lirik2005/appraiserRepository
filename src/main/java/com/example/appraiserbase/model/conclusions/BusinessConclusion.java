@@ -28,6 +28,9 @@ public class BusinessConclusion {
     @Column(length = 100, nullable = false)
     private String contractNumber;                                  //номер договора
 
+    @Column(nullable = false, unique = true)
+    private Integer businessCertificate;
+
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate contractDate;                                     //дата заключения договора
@@ -233,5 +236,13 @@ public class BusinessConclusion {
 
     public void setAppraiser(Appraiser appraiser) {
         this.appraiser = appraiser;
+    }
+
+    public Integer getBusinessCertificate() {
+        return businessCertificate;
+    }
+
+    public void setBusinessCertificate(Integer businessCertificate) {
+        this.businessCertificate = businessCertificate;
     }
 }
