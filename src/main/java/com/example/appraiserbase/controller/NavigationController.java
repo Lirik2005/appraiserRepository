@@ -28,8 +28,9 @@ public class NavigationController {
         this.appraiserService = appraiserService;
     }
 
-    @RequestMapping(value = { "/appraisers"}, method = RequestMethod.GET)
-   // @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestMapping(value = { "/", "/appraisers"}, method = RequestMethod.GET)
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER', 'PREMIUM')")
+    // @PreAuthorize("hasAuthority('ADMIN')")
     public String appraisers(Model model) {
         List<Appraiser> appraiserList = appraiserService.getAllAppraisers();
         model.addAttribute("appraisers", appraiserList);

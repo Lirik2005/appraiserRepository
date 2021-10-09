@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BusinessConclusionServiceImpl implements BusinessConclusionService{
@@ -16,6 +17,12 @@ public class BusinessConclusionServiceImpl implements BusinessConclusionService{
     @Autowired
     public BusinessConclusionServiceImpl(BusinessConclusionRepository repository) {
         this.repository = repository;
+    }
+
+    @Override
+    @Transactional
+    public BusinessConclusion getBusinessConclusionById(Long pid) {
+        return repository.findConclusionById(pid);
     }
 
     @Override

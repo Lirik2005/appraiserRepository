@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,7 +50,6 @@ public class BusinessConclusionController {
             final User currentAppraiser = (User) AuthUtil.getUserFromContext();
             final Optional<Appraiser> appraiserByLogin = appraiserService.getAppraiserByLogin(currentAppraiser.getUsername());
             model.addAttribute("appraisers", appraiserByLogin.orElseThrow(() -> new ServiceException("Пользователь отсутствует")));
-           // model.addAttribute("appraisers", appraiserService.getAllAppraisers());
             model.addAttribute("businessConclusions", new BusinessConclusion());
             return ADD_MODAL;
         } catch (Exception e) {
@@ -69,6 +69,50 @@ public class BusinessConclusionController {
         } catch (Exception e) {
             model.addAttribute("businessConclusions", businessConclusionService.getAllConclusions());
             model.addAttribute("message", "Произошла ошибка. Заключение не добавлено в базу");
+            model.addAttribute("alertClass", "alert-danger");
+            return BUSINESS_CONCLUSION_TABLE;
+        }
+    }
+
+    @GetMapping("/businessConclusions/editConclusion")
+    public String editBusinessConclusion(Long pid, Model model) {
+        try {
+          BusinessConclusion businessConclusion = businessConclusionService.getBusinessConclusionById(pid);
+
+            model.addAttribute("businessConclusions", businessConclusion);
+            return EDIT_MODAL;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return EDIT_MODAL;
+        }
+    }
+
+    @PostMapping("/businessConclusions/updateConclusion")
+    public String updateConclusion (BusinessConclusion businessConclusion, Model model) {
+        try {
+            businessConclusionService.updateConclusion(businessConclusion);
+            model.addAttribute("businessConclusions", businessConclusionService.getAllConclusions());
+            model.addAttribute("message", "Заключение успешно обновлено");
+            model.addAttribute("alertClass", "alert-success");
+            return BUSINESS_CONCLUSION_TABLE;
+        } catch (Exception e) {
+            model.addAttribute("message", "При редактировании заключения возникла ошибка");
+            model.addAttribute("alertClass", "alert-danger");
+            return BUSINESS_CONCLUSION_TABLE;
+        }
+    }
+
+    @RequestMapping(value = "//businessConclusions/deleteConclusion", method = {RequestMethod.DELETE, RequestMethod.GET})
+    public String deleteConclusion(Long pid, Model model) {
+        try {
+            businessConclusionService.deleteConclusion(pid);
+            model.addAttribute("businessConclusions", businessConclusionService.getAllConclusions());
+            model.addAttribute("message", "Заключение успешно удалено из базы");
+            model.addAttribute("alertClass", "alert-success");
+            return BUSINESS_CONCLUSION_TABLE;
+        } catch (Exception e) {
+            model.addAttribute("businessConclusions", businessConclusionService.getAllConclusions());
+            model.addAttribute("message", "Возникла ошибка при удалении из базы");
             model.addAttribute("alertClass", "alert-danger");
             return BUSINESS_CONCLUSION_TABLE;
         }

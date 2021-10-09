@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div class="modal-dialog modal-fullscreen" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Редактирование заключения</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="custom-alert"></div>
+            <form th:action="@{/conclusions/businessConclusions/updateConclusion}" id="edit_conclusion"
+                  th:object="${businessConclusions}" method="post">
+                <input type="hidden" th:field="*{pid}" name="pid" id="edit_appraiser_id">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <label for="appraiser" class="form-label fw-bold">Оценщик</label>
+                        <input class="form-control" th:value="*{appraiser.lastNameAndInitials()}" id="appraiser" type="text"
+                               required readonly>
+                        <input class="appraiser" th:field="*{appraiser}" name="appraiser" style="display: none">
+                    </div>
+                    <div class="col-6">
+                        <label for="businessCertificate" class="form-label fw-bold">Номер свидетельства</label>
+                        <input class="form-control" th:field="*{businessCertificate}" id="businessCertificate"
+                               type="text"
+                               name="businessCertificate"
+                               required readonly>
+
+                    </div>
+
+                    <div class="col-6">
+                        <label for="conclusionNumber" class="form-label fw-bold">Номер заключения</label>
+                        <input class="form-control" th:field="*{conclusionNumber}" id="conclusionNumber" type="text"
+                               name="conclusionNumber"
+                               required>
+                    </div>
+                    <div class="col-6">
+                        <label for="dateOfIssue" class="form-label fw-bold">Дата выдачи заключения</label>
+                        <input class="form-control" th:field="*{dateOfIssue}" id="dateOfIssue" type="text"
+                               name="dateOfIssue"
+                               required>
+                    </div>
+                    <div class="col-6">
+                        <label for="contractNumber" class="form-label fw-bold">Номер договора</label>
+                        <input class="form-control" th:field="*{contractNumber}" id="contractNumber" type="text"
+                               name="contractNumber"
+                               required>
+                    </div>
+                    <div class="col-6">
+                        <label for="contractDate" class="form-label fw-bold">Дата заключения договора</label>
+                        <input class="form-control" th:field="*{contractDate}" id="contractDate" type="text"
+                               name="contractDate"
+                               required>
+                    </div>
+                    <div class="col-12">
+                        <label for="subjectOfAssessment" class="form-label fw-bold">Объект оценки</label>
+                        <input class="form-control" th:field="*{subjectOfAssessment}" id="subjectOfAssessment"
+                               type="text" name="subjectOfAssessment"
+                               required>
+                    </div>
+                    <div class="col-4">
+                        <label for="evaluationDate" class="form-label fw-bold">Дата оценки</label>
+                        <input class="form-control" th:field="*{evaluationDate}" id="evaluationDate"
+                               type="text" name="evaluationDate"
+                               required>
+                    </div>
+                    <div class="col-4">
+                        <label for="inspectionDate" class="form-label fw-bold">Дата осмотра</label>
+                        <input class="form-control" th:field="*{inspectionDate}" id="inspectionDate"
+                               type="text" name="inspectionDate"
+                               required>
+                    </div>
+                    <div class="col-4">
+                        <label for="appraisalPrices" class="form-label fw-bold">Цены оценки</label>
+                        <input class="form-control" th:field="*{appraisalPrices}" id="appraisalPrices"
+                               type="text" name="appraisalPrices"
+                               required>
+                    </div>
+                    <div class="col-6">
+                        <label class="col-form-label fw-bold">Цель оценки стоимости</label>
+                        <select name="assessmentPurpose" class="form-select">
+                            <option th:each="assessmentPurpose : ${T(com.example.appraiserbase.model.conclusions.enums.AssessmentPurpose).values()}"
+                                    th:value="${assessmentPurpose}"
+                                    th:text="${assessmentPurpose.getAssessmentPurpose()}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label class="col-form-label fw-bold">Предмет оценки</label>
+                        <select name="typeOfValue" class="form-select">
+                            <option th:each="typeOfValue : ${T(com.example.appraiserbase.model.conclusions.enums.TypeOfValue).values()}"
+                                    th:value="${typeOfValue}"
+                                    th:text="${typeOfValue.getTypeOfValue()}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label class="col-form-label fw-bold">Метод оценки</label>
+                        <select name="assessmentMethod" class="form-select">
+                            <option th:each="assessmentMethod : ${T(com.example.appraiserbase.model.conclusions.enums.AssessmentMethod).values()}"
+                                    th:value="${assessmentMethod}"
+                                    th:text="${assessmentMethod.getAssessmentMethod()}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label for="calculationMethod" class="form-label fw-bold">Метод расчета стоимости</label>
+                        <input class="form-control" th:field="*{calculationMethod}" id="calculationMethod"
+                               type="text" name="calculationMethod"
+                               required>
+                    </div>
+                    <div class="col-12">
+                        <label for="evaluationResult" class="form-label fw-bold">Результат независимой оценки</label>
+                        <input class="form-control" th:field="*{evaluationResult}" id="evaluationResult"
+                               type="text" name="evaluationResult"
+                               required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</html>
+
+
+
+
+
+

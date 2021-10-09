@@ -13,8 +13,8 @@
             <th scope="col">Предмет оценки</th>
             <th scope="col">Результат независимой оценки</th>
             <th scope="col">Просмотр</th>
-            <th scope="col">Редактирование</th>
-            <th scope="col">Удаление</th>
+            <th scope="col" sec:authorize="hasAuthority('ADMIN')">Редактирование</th>
+            <th scope="col" sec:authorize="hasAuthority('ADMIN')">Удаление</th>
         </tr>
         </thead>
 
@@ -30,16 +30,19 @@
             <td th:text="*{typeOfValue.getTypeOfValue()}"></td>
             <td th:text="*{evaluationResult}"></td>
             <td>
-                <a th:href="@{conclusions/businessConclusions/showConcliusion/(pid=*{pid})}" class="btn btn-success showBtn">
+                <a th:href="@{conclusions/businessConclusions/showConcliusion/(pid=*{pid})}"
+                   class="btn btn-success showBtn">
                     Просмотр
                 </a>
             </td>
             <td>
-                <a th:href="@{conclusions/businessConclusions/editConclusion/(pid=*{pid})}" class="btn btn-warning editBtn">
+                <a th:href="@{conclusions/businessConclusions/editConclusion/(pid=*{pid})}"
+                   class="btn btn-warning editBusinessBtn" sec:authorize="hasAuthority('ADMIN')">
                     Редактирование
                 </a>
             <td>
-                <a th:href="@{conclusions/businessConclusions/deleteConclusion/(pid=*{pid})}" class="btn btn-danger deleteBtn">
+                <a th:href="@{conclusions/businessConclusions/deleteConclusion/(pid=*{pid})}"
+                   class="btn btn-danger deleteBusinessBtn" sec:authorize="hasAuthority('ADMIN')">
                     Удаление
                 </a>
             </td>

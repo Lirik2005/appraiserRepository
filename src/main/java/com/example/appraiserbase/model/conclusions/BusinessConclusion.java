@@ -28,7 +28,7 @@ public class BusinessConclusion {
     @Column(length = 100, nullable = false)
     private String contractNumber;                                  //номер договора
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private Integer businessCertificate;
 
     @Column(nullable = false)
