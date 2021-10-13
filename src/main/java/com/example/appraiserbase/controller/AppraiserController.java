@@ -125,9 +125,7 @@ public class AppraiserController {
         model.addAttribute("message", "В результате поиска произошла ошибка");
         model.addAttribute("alertClass", "alert-danger");
         return APPRAISER_TABLE;
-
         }
-
     }
 
 

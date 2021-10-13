@@ -102,7 +102,7 @@ public class BusinessConclusionController {
         }
     }
 
-    @RequestMapping(value = "//businessConclusions/deleteConclusion", method = {RequestMethod.DELETE, RequestMethod.GET})
+    @RequestMapping(value = "/businessConclusions/deleteConclusion", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteConclusion(Long pid, Model model) {
         try {
             businessConclusionService.deleteConclusion(pid);
@@ -118,5 +118,23 @@ public class BusinessConclusionController {
         }
     }
 
+    @GetMapping("/businessConclusions/filter")
+    public String filterBusinessConclusion(String searchText, Model model) {
+        List<BusinessConclusion> businessConclusionList;
+        try {
+            if (searchText != null && !searchText.isEmpty()) {
+                businessConclusionList = businessConclusionService.conclusionFilter(searchText);
+            } else {
+                businessConclusionList = businessConclusionService.getAllConclusions();
+            }
+            model.addAttribute("businessConclusions", businessConclusionList);
+            return BUSINESS_CONCLUSION_TABLE;
+        } catch (Exception e) {
+            model.addAttribute("businessConclusions", businessConclusionService.getAllConclusions());
+            model.addAttribute("message", "В результате поиска произошла ошибка");
+            model.addAttribute("alertClass", "alert-danger");
+            return BUSINESS_CONCLUSION_TABLE;
+        }
+    }
 
 }

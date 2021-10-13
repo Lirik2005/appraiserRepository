@@ -17,4 +17,5 @@ public enum AssessmentMethod {
     public String getAssessmentMethod() {
         return ASSESSMENT_METHOD;
     }
+
 }

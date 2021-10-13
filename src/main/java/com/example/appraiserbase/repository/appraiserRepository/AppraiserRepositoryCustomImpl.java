@@ -36,21 +36,6 @@ public class AppraiserRepositoryCustomImpl implements AppraiserRepositoryCustom 
         return criteria.list();
     }
 
-   /* public List<Appraiser> filterAppraiser(String searchText) {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Appraiser> cq = cb.createQuery(Appraiser.class);
-        Root<Appraiser> appraiser = cq.from(Appraiser.class);
-        List<Predicate> predicates = new ArrayList<>();
-        if (searchText != null && !searchText.isEmpty()) {
-            predicates.add(cb.like(appraiser.get("lastName"), "%" + searchText + "%"));
-        }
-
-            cq.select(appraiser).where(cb.and(predicates.toArray(new Predicate[0])));
-            return entityManager.createQuery(cq).getResultList();
-
-    }*/
-
-
 }
 
 
