@@ -40,7 +40,7 @@ public class LandConclusion {
     private LocalDate evaluationDate;                                   //дата оценки
 
     @Column(nullable = false)
-    private Integer area;                                        //площадь участка
+    private Double area;                                        //площадь участка
 
     @Column(nullable = false, length = 100)
     private String address;                                       //местоположение
@@ -66,6 +66,9 @@ public class LandConclusion {
 
     @Column(nullable = false)
     private Long evaluationResult;                                 //результат независимой оценки
+
+    @Column(nullable = false)
+    private Integer landCertificate;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "appraiser_pid")
@@ -168,11 +171,11 @@ public class LandConclusion {
         this.evaluationDate = evaluationDate;
     }
 
-    public Integer getArea() {
+    public Double getArea() {
         return area;
     }
 
-    public void setArea(Integer area) {
+    public void setArea(Double area) {
         this.area = area;
     }
 
@@ -238,5 +241,13 @@ public class LandConclusion {
 
     public void setAppraiser(Appraiser appraiser) {
         this.appraiser = appraiser;
+    }
+
+    public Integer getLandCertificate() {
+        return landCertificate;
+    }
+
+    public void setLandCertificate(Integer landCertificate) {
+        this.landCertificate = landCertificate;
     }
 }

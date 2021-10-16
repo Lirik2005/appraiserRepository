@@ -26,10 +26,10 @@ public class BusinessConclusionRepositoryCustomImpl implements BusinessConclusio
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(BusinessConclusion.class);
         Disjunction disjunction = Restrictions.or(
-                //  Restrictions.ilike("appraiser", searchText, MatchMode.ANYWHERE),
+                //   Restrictions.ilike("appraiser", searchText, MatchMode.ANYWHERE)
                 Restrictions.ilike("subjectOfAssessment", searchText, MatchMode.ANYWHERE)
                 //Restrictions.ilike("typeOfValue", searchText, MatchMode.ANYWHERE),
-                //Restrictions.ilike("assessmentPurpose", searchText, MatchMode.ANYWHERE)
+                // Restrictions.ilike("assessmentPurpose", searchText, MatchMode.ANYWHERE)
         );
         criteria.add(disjunction);
         criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);

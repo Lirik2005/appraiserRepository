@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div class="landConclusion_list" th:fragment="landConclusion_list">
+    <div th:replace="fragments/alert"></div>
+    <table class="table" id="landConclusionTable">
+        <thead class="table-secondary">
+        <tr>
+            <th scope="col">Оценщик</th>
+            <th scope="col">№ заключения</th>
+            <th scope="col">Дата выдачи</th>
+            <th scope="col">Объект оценки</th>
+            <th scope="col">Предмет оценки</th>
+            <th scope="col">Результат независимой оценки</th>
+            <th scope="col">Просмотр</th>
+            <th scope="col" sec:authorize="hasAuthority('ADMIN')">Редактирование</th>
+            <th scope="col" sec:authorize="hasAuthority('ADMIN')">Удаление</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="landConclusion : ${landConclusions}" th:object="${landConclusion}">
+            <td style="display: none">
+                <div class="pid" th:text="*{pid}"></div>
+            </td>
+            <td th:text="*{appraiser.lastNameAndInitials()}"></td>
+            <td th:text="*{conclusionNumber}"></td>
+            <td th:text="*{dateOfIssue}"></td>
+            <td th:text="*{subjectOfAssessment}"></td>
+            <td th:text="*{typeOfValue.getTypeOfValue()}"></td>
+            <td th:text="*{evaluationResult}"></td>
+            <td>
+                <a th:href="@{conclusions/landConclusions/showConcliusion/(pid=*{pid})}"
+                   class="btn btn-success showBtn">
+                    Просмотр
+                </a>
+            </td>
+            <td>
+                <a th:href="@{conclusions/landConclusions/editConclusion/(pid=*{pid})}"
+                   class="btn btn-warning editLandBtn" sec:authorize="hasAuthority('ADMIN')">
+                    Редактирование
+                </a>
+            <td>
+                <a th:href="@{conclusions/landConclusions/deleteConclusion/(pid=*{pid})}"
+                   class="btn btn-danger deleteLandBtn" sec:authorize="hasAuthority('ADMIN')">
+                    Удаление
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="modal fade" id="addLandConclusionModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+         aria-hidden="true"></div>
+    <div class="modal fade" id="editLandConclusionModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+         aria-hidden="true"></div>
+    <div th:replace="conclusions/landConclusions/modal/deleteConclusion">
+    </div>
+</div>
+</html>

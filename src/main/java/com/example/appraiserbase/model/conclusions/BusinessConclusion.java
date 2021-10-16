@@ -72,7 +72,6 @@ public class BusinessConclusion {
     @JoinColumn(name = "appraiser_pid")
     private Appraiser appraiser;
 
-
     @Transient
     public String dataHelperDateOfIssue() {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");

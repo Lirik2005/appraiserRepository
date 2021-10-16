@@ -1,6 +1,6 @@
 addConclusionBtnEvent();
 
-eventForConclusionPage();
+eventForBusinessConclusionPage();
 
 
 function addConclusionBtnEvent() {
@@ -31,11 +31,10 @@ async function submitNewConclusionForm(event) {
         let modal = bootstrap.Modal.getInstance(document.getElementById("addConclusionModal"));
         modal.hide();
         document.querySelector(".businessConclusion_list").innerHTML = fragment;
-        eventForConclusionPage();
+        eventForBusinessConclusionPage();
     })
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function editConclusion(href) {
     fetch(href)
         .then(response => response.text()).then(fragment => {
@@ -59,11 +58,11 @@ async function submitEditConclusionForm(event) {
         let modal = bootstrap.Modal.getInstance(document.getElementById('editConclusionModal'));
         modal.hide();
         document.querySelector(".businessConclusion_list").innerHTML = fragment;
-        eventForConclusionPage();
+        eventForBusinessConclusionPage();
     });
 }
 
-function eventForConclusionPage() {
+function eventForBusinessConclusionPage() {
     document.querySelectorAll('.table .editBusinessBtn').forEach(editBusinessBtn => editBusinessBtn.addEventListener('click', function (event) {
         event.preventDefault()
         let href = this.getAttribute('href');
@@ -80,39 +79,20 @@ function eventForConclusionPage() {
             fetch(href).then(response => response.text()).then(fragment => {
                 document.querySelector(".businessConclusion_list").innerHTML = fragment;
                 modal.hide();
-                eventForConclusionPage();
+                eventForBusinessConclusionPage();
             })
         })
     }));
-
 }
 
-
-/*async function saveAppraiser(request) {
-    let response = await fetch(request);
-    let appraiserTable = await response.text();
-    let modal = bootstrap.Modal.getInstance(document.getElementById('addModal'));
-    modal.hide();
-    document.querySelector(".appraiser_list").innerHTML = appraiserTable;
-    eventForAppraiserPage();
-}
-
-
-
-
-
-
-
-const path = "http://localhost:8080/appraisers"
-
-async function searchAppraiser() {
+async function searchBusinessConclusion() {
+    const path = "http://localhost:8080/conclusions"
     let searchWord = document.getElementById('searchText').value
     const param = new URLSearchParams({
         "searchText": searchWord
     });
-    fetch(path + "/filter?" + param).then(response => response.text()).then(fragment => {
-        document.querySelector(".appraiser_list").innerHTML = fragment
-        eventForAppraiserPage();
+    fetch(path + "/businessConclusions/filter?" + param).then(response => response.text()).then(fragment => {
+        document.querySelector(".businessConclusion_list").innerHTML = fragment
+        eventForBusinessConclusionPage();
     })
-
-}*/
+}
